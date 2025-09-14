@@ -13,10 +13,10 @@ public class MecanumDrive extends OpMode {
     private IMU imu;
     @Override
     public void init() {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "flm");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "blm");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "frm");
-        backRightMotor = hardwareMap.get(DcMotor.class, "brm");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, "lf");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "lr");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
+        backRightMotor = hardwareMap.get(DcMotor.class, "rr");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
