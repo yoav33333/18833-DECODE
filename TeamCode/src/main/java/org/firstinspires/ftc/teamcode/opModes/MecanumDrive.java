@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shuterMotor;
     private IMU imu;
     @Override
     public void init() {
@@ -19,6 +19,7 @@ public class MecanumDrive extends OpMode {
         frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
         backRightMotor = hardwareMap.get(DcMotor.class, "rr");
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
+        shuterMotor = hardwareMap.get(DcMotor.class, "sm")
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -81,5 +82,12 @@ public class MecanumDrive extends OpMode {
         else {
             double maxSpeed = 1.0;
         }
+        if (gamepad1.right_bumper) {
+            shuterMotor.setPower(1.0);
+        }
+        else {
+            shuterMotor.setPower(0);
+        }
+
     }
 }
