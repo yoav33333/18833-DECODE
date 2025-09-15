@@ -19,7 +19,7 @@ public class MecanumDrive extends OpMode {
         frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
         backRightMotor = hardwareMap.get(DcMotor.class, "rr");
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
-        shuterMotor = hardwareMap.get(DcMotor.class, "sm")
+        shuterMotor = hardwareMap.get(DcMotor.class, "sm");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
