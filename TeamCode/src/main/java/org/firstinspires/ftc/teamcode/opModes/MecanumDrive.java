@@ -82,12 +82,17 @@ public class MecanumDrive extends OpMode {
         else {
             double maxSpeed = 1.0;
         }
-        if (gamepad1.right_bumper) {
+        if (gamepad1.x) {
             shuterMotor.setPower(1.0);
         }
         else {
             shuterMotor.setPower(0);
         }
-
+        if (gamepad1.b) {
+            double maxSpeed = gamepad1.left_trigger;
+        }
+        else {
+            double maxSpeed = 1.0;
+        }
     }
 }
