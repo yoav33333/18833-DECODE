@@ -77,7 +77,7 @@ public class MecanumDrive extends OpMode {
             vacuumingMotor.setPower(0);
         }
         if (gamepad1.right_bumper && !wasrightbumperPressed) {
-            if (wasrightbumperPressed = true) {
+            if (wasrightbumperPressed == true) {
                 maxSpeed = 0.3;
             }
         }
