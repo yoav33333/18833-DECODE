@@ -11,7 +11,7 @@ public class ReadRobotTeleopDrive extends OpMode {
     public void init() {
 
     }
-//   to now every button/joy stick mode
+//   to now every button/joystick mode
     @Override
     public void loop() {
         telemetry.addData("lx", gamepad1.left_stick_x);
