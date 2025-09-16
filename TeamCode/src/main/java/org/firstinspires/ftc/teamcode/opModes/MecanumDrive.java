@@ -5,13 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shuterMotor;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor;
     private IMU imu;
+    double maxSpeed = 0.5;
+    private boolean wasrightbumperPressed = false;
     @Override
     public void init() {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "lf");
@@ -19,7 +20,7 @@ public class MecanumDrive extends OpMode {
         frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
         backRightMotor = hardwareMap.get(DcMotor.class, "rr");
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
-        shuterMotor = hardwareMap.get(DcMotor.class, "sm");
+        shooterMotor = hardwareMap.get(DcMotor.class, "sm");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -50,7 +51,7 @@ public class MecanumDrive extends OpMode {
         double backRightPower = forward + strafe - rotate;
 
         double maxPower = 1.0;
-        double maxSpeed = 1.0;
+//        double maxSpeed = 1.0;
 
         maxPower = Math.max(maxPower, Math.abs(frontLeftPower));
         maxPower = Math.max(maxPower, Math.abs(backLeftPower));
@@ -72,27 +73,27 @@ public class MecanumDrive extends OpMode {
         } else if (gamepad1.y) {
             vacuumingMotor.setPower(-1.0);
         }
-
         else {
             vacuumingMotor.setPower(0);
         }
-        if (gamepad1.left_bumper) {
-            double maxSpeed = 0.3;
+        if (gamepad1.right_bumper) {
+            maxSpeed = 0.3;
         }
         else {
-            double maxSpeed = 1.0;
+            maxSpeed = 0.5;
         }
         if (gamepad1.x) {
-            shuterMotor.setPower(1.0);
+            shooterMotor.setPower(1.0);
         }
         else {
-            shuterMotor.setPower(0);
+            shooterMotor.setPower(0);
         }
-        if (gamepad1.b) {
-            double maxSpeed = gamepad1.left_trigger;
+        if (gamepad1.left_bumper) {
+            maxSpeed = 1.0;
         }
         else {
-            double maxSpeed = 1.0;
+            maxSpeed = 0.5;
         }
+
     }
 }
