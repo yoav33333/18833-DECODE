@@ -12,7 +12,6 @@ public class MecanumDrive extends OpMode {
     private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor;
     private IMU imu;
     double maxSpeed = 1.0;
-    private boolean wasrightbumperPressed = false;
 
     @Override
     public void init() {
@@ -77,23 +76,20 @@ public class MecanumDrive extends OpMode {
         else {
             vacuumingMotor.setPower(0);
         }
-        if (gamepad1.right_bumper && !wasrightbumperPressed) {
-            if (wasrightbumperPressed == true) {
+        if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
+            if (maxSpeed == 1.0) {
                 maxSpeed = 0.4;
             }
             else {
                 maxSpeed = 1.0;
             }
         }
-        else {
-            maxSpeed = 1.0;
-        }
+
         if (gamepad1.x) {
             shooterMotor.setPower(1.0);
         }
         else {
             shooterMotor.setPower(0);
         }
-        wasrightbumperPressed = gamepad1.right_bumper;
     }
 }
