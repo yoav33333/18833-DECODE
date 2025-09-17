@@ -48,6 +48,13 @@ object Drive : Component {
     fun stop() {
         setDrivePower(0.0, 0.0, 0.0, 0.0)
     }
+    fun setHeading(angle: Double) {
+        imu.zero()
+        DriveVariables.imuOffset = angle
+    }
+    fun getHeading(): Double {
+        return Math.toRadians(imu.get().inDeg + DriveVariables.imuOffset)
+    }
 
     override fun postUpdate() {
         run()
@@ -65,7 +72,7 @@ object Drive : Component {
         var rotX: Double = x
         var rotY: Double = y
         if(DriveVariables.fieldOriented || DriveVariables.auto) {
-            var botHeading: Double = imu.get().inRad
+            var botHeading: Double = getHeading()
             rotX = x * cos(-botHeading) - y * sin(-botHeading)
             rotY = x * sin(-botHeading) + y * cos(-botHeading)
         }

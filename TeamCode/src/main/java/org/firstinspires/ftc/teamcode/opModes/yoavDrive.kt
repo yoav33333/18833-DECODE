@@ -19,6 +19,8 @@ class YoavDrive: NextFTCOpMode() {
             .whenFalse { outtake }
         button { gamepad1.left_bumper }
             .whenBecomesTrue { maxSpeed = if (maxSpeed == 1.0) 0.4 else 1.0 }
+        button { gamepad1.right_bumper }
+            .whenTrue { Drive.setHeading(0.0) }
     }
 
     override fun onUpdate() {

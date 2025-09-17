@@ -13,7 +13,7 @@ object DriveVariables {
     @JvmField var fieldOriented = false
     @JvmField var auto = false
     @JvmField var maxSpeed = 1.0
-
+    @JvmField var imuOffset = 0.0
 
     fun setXMultiplier(xMultiplier: Double) : DriveVariables{
         return this
@@ -25,6 +25,9 @@ object DriveVariables {
         return this
     }
     fun setMaxSpeed(maxSpeed: Double) : DriveVariables{
+        return this
+    }
+    fun setImuOffset(imuOffset: Double) : DriveVariables{
         return this
     }
 
