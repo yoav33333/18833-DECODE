@@ -94,5 +94,6 @@ public class MecanumDrive extends OpMode {
         else {
             shooterMotor.setPower(0);
         }
+        wasrightbumperPressed = gamepad2.right_bumper;
     }
 }
