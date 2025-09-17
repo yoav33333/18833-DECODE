@@ -77,7 +77,7 @@ public class MecanumDrive extends OpMode {
         else {
             vacuumingMotor.setPower(0);
         }
-        if (gamepad2.right_bumper && !wasrightbumperPressed) {
+        if (gamepad1.right_bumper && !wasrightbumperPressed) {
             if (wasrightbumperPressed == true) {
                 maxSpeed = 0.4;
             }
@@ -94,6 +94,6 @@ public class MecanumDrive extends OpMode {
         else {
             shooterMotor.setPower(0);
         }
-        wasrightbumperPressed = gamepad2.right_bumper;
+        wasrightbumperPressed = gamepad1.right_bumper;
     }
 }
