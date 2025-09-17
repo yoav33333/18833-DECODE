@@ -80,6 +80,9 @@ public class MecanumDrive extends OpMode {
             if (wasrightbumperPressed == true) {
                 maxSpeed = 0.4;
             }
+            else {
+                maxSpeed = 1.0;
+            }
         }
         else {
             maxSpeed = 1.0;
