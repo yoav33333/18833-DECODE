@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2;
     private IMU imu;
     double maxSpeed = 1.0;
 
@@ -20,7 +20,8 @@ public class MecanumDrive extends OpMode {
         frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
         backRightMotor = hardwareMap.get(DcMotor.class, "rr");
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
-        shooterMotor = hardwareMap.get(DcMotor.class, "sm");
+        shooterMotor1 = hardwareMap.get(DcMotor.class, "sm1");
+        shooterMotor2 = hardwareMap.get(DcMotor.class, "sm2");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -68,7 +69,7 @@ public class MecanumDrive extends OpMode {
     public void loop() {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
-        if (gamepad1.a){
+        if (gamepad1.a && gamepad1.aWasPressed()){
             vacuumingMotor.setPower(0.7);
         } else if (gamepad1.y) {
             vacuumingMotor.setPower(-0.7);
@@ -85,11 +86,13 @@ public class MecanumDrive extends OpMode {
             }
         }
 
-        if (gamepad1.x) {
-            shooterMotor.setPower(1.0);
+        if (gamepad1.x && gamepad1.xWasPressed()) {
+            shooterMotor1.setPower(1.0);
+            shooterMotor2.setPower(1.0);
         }
         else {
-            shooterMotor.setPower(0);
+            shooterMotor1.setPower(0);
+            shooterMotor2.setPower(0);
         }
     }
 }
