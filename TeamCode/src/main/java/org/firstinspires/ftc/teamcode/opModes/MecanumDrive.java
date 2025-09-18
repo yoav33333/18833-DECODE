@@ -69,16 +69,16 @@ public class MecanumDrive extends OpMode {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.a){
-            vacuumingMotor.setPower(1.0);
+            vacuumingMotor.setPower(0.7);
         } else if (gamepad1.y) {
-            vacuumingMotor.setPower(-1.0);
+            vacuumingMotor.setPower(-0.7);
         }
         else {
             vacuumingMotor.setPower(0);
         }
         if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
             if (maxSpeed == 1.0) {
-                maxSpeed = 0.7;
+                maxSpeed = 0.5;
             }
             else {
                 maxSpeed = 1.0;
