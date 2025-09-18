@@ -19,7 +19,7 @@ object IntakeHardware: Component {
     fun stop() {
         setPower(0.0)
     }
-    fun run() {
+    fun intake() {
         setPower(1.0)
     }
     fun outtake() {

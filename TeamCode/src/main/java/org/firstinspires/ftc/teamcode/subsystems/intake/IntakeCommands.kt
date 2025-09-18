@@ -4,25 +4,19 @@ import dev.nextftc.core.commands.utility.LambdaCommand
 
 object IntakeCommands {
     val intake = LambdaCommand()
-        .setStart {
-            IntakeHardware.run()
+        .setUpdate { IntakeHardware.intake() }
+        .setStop {
+            IntakeHardware.stop()
         }
-        .setStop {interrupted ->
-            if (!interrupted){
-                IntakeHardware.stop()
-            }
-        }
-        .setRequirements( IntakeHardware)
+        .setRequirements(IntakeHardware)
 
 
     val outtake = LambdaCommand()
-        .setStart {
+        .setUpdate {
             IntakeHardware.outtake()
         }
-        .setStop {interrupted ->
-            if (!interrupted){
-                IntakeHardware.stop()
-            }
+        .setStop{
+            IntakeHardware.stop()
         }
         .setRequirements(IntakeHardware)
     val stop = LambdaCommand()
