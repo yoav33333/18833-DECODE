@@ -19,7 +19,7 @@ object Drive : Component {
         MotorEx("rr"),
     )
     private val powers = arrayOf(0.0, 0.0, 0.0, 0.0)
-    private val imu = IMUEx("imu", Direction.DOWN, Direction.BACKWARD).zeroed()
+    private val imu = IMUEx("imu", Direction.RIGHT, Direction.UP).zeroed()
 
 
     override fun preInit() {
@@ -62,7 +62,7 @@ object Drive : Component {
     fun run() {
         if (!DriveVariables.auto) {
             driveByVectors(
-                gamepad1.left_stick_x.toDouble(),
+                -gamepad1.left_stick_x.toDouble(),
                 gamepad1.left_stick_y.toDouble(),
                 gamepad1.right_stick_x.toDouble())
         }

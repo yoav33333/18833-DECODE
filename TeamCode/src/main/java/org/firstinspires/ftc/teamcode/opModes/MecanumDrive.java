@@ -69,7 +69,7 @@ public class MecanumDrive extends OpMode {
     public void loop() {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
-        if (gamepad1.a && gamepad1.aWasPressed()){
+        if (gamepad1.left_trigger>0.5) {
             vacuumingMotor.setPower(1.0);
         } else if (gamepad1.y) {
             vacuumingMotor.setPower(-1.0);
@@ -86,9 +86,9 @@ public class MecanumDrive extends OpMode {
             }
         }
 
-        if (gamepad1.x && gamepad1.xWasPressed()) {
+        if (gamepad1.right_trigger>0.5) {
             shooterMotor1.setPower(1.0);
-            shooterMotor2.setPower(1.0);
+            shooterMotor2.setPower(-1.0);
         }
         else {
             shooterMotor1.setPower(0);
