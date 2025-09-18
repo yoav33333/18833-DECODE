@@ -9,9 +9,10 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, controlShooter;
     private IMU imu;
     double maxSpeed = 1.0;
+    int target = 0;
 
     @Override
     public void init() {
@@ -22,6 +23,7 @@ public class MecanumDrive extends OpMode {
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
         shooterMotor1 = hardwareMap.get(DcMotor.class, "sm1");
         shooterMotor2 = hardwareMap.get(DcMotor.class, "sm2");
+        controlShooter = hardwareMap.get(DcMotor.class, "csm");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -30,11 +32,15 @@ public class MecanumDrive extends OpMode {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        controlShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        controlShooter.setTargetPosition(0);
+        controlShooter.setPower(1);
+        controlShooter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        controlShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         imu = hardwareMap.get(IMU.class, "imu");
 
@@ -68,6 +74,7 @@ public class MecanumDrive extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
+        telemetry.addData("target", target);
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.left_trigger>0.5) {
             vacuumingMotor.setPower(1.0);
@@ -85,7 +92,7 @@ public class MecanumDrive extends OpMode {
                 maxSpeed = 1.0;
             }
         }
-
+        target += (int) (10*(gamepad1.dpad_up ? 1 : gamepad1.dpad_down ? -1 : 0.0));
         if (gamepad1.right_trigger>0.5) {
             shooterMotor1.setPower(1.0);
             shooterMotor2.setPower(-1.0);
@@ -94,5 +101,6 @@ public class MecanumDrive extends OpMode {
             shooterMotor1.setPower(0);
             shooterMotor2.setPower(0);
         }
+        controlShooter.setTargetPosition(target);
     }
 }
