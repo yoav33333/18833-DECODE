@@ -70,9 +70,9 @@ public class MecanumDrive extends OpMode {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.a && gamepad1.aWasPressed()){
-            vacuumingMotor.setPower(0.7);
+            vacuumingMotor.setPower(1.0);
         } else if (gamepad1.y) {
-            vacuumingMotor.setPower(-0.7);
+            vacuumingMotor.setPower(-1.0);
         }
         else {
             vacuumingMotor.setPower(0);
