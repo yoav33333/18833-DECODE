@@ -78,7 +78,7 @@ public class MecanumDrive extends OpMode {
         }
         if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
             if (maxSpeed == 1.0) {
-                maxSpeed = 0.4;
+                maxSpeed = 0.75;
             }
             else {
                 maxSpeed = 1.0;
