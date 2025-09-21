@@ -13,7 +13,7 @@ public class MecanumDrive extends OpMode {
     private IMU imu;
     double maxSpeed = 1.0;
     int target = 0;
-
+    // every motor name
     @Override
     public void init() {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "lf");
