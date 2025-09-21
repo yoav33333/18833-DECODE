@@ -10,7 +10,7 @@ object DriveVariables {
     val backRight = "rr"
     val imu = "imu"
     @JvmField var xMul = 1.1;
-    @JvmField var fieldOriented = false
+    @JvmField var fieldOriented = true
     @JvmField var auto = false
     @JvmField var maxSpeed = 1.0
     @JvmField var imuOffset = 0.0
