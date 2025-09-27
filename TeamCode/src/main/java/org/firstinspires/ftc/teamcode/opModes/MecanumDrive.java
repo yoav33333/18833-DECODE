@@ -41,6 +41,9 @@ public class MecanumDrive extends OpMode {
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         controlShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooterMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        shooterMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        controlShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         imu = hardwareMap.get(IMU.class, "imu");
 
@@ -92,7 +95,7 @@ public class MecanumDrive extends OpMode {
                 maxSpeed = 1.0;
             }
         }
-        target += (int) (10*(gamepad1.dpad_up ? 1 : gamepad1.dpad_down ? -1 : 0.0));
+        target += (int) (10*(gamepad1.dpad_up ? 0.5 : gamepad1.dpad_down ? -0.5 : 0.0));
         if (gamepad1.right_trigger>0.5) {
             shooterMotor1.setPower(1.0);
             shooterMotor2.setPower(-1.0);
