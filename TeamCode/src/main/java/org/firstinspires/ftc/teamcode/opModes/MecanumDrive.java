@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, controlShooter;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, controlShooter, transferencemotor;
     private IMU imu;
     double maxSpeed = 1.0;
     int target = 0;
@@ -24,6 +24,7 @@ public class MecanumDrive extends OpMode {
         shooterMotor1 = hardwareMap.get(DcMotor.class, "sm1");
         shooterMotor2 = hardwareMap.get(DcMotor.class, "sm2");
         controlShooter = hardwareMap.get(DcMotor.class, "csm");
+        transferencemotor = hardwareMap.get(DcMotor.class, "tm");
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -103,5 +104,11 @@ public class MecanumDrive extends OpMode {
             shooterMotor2.setPower(0);
         }
         controlShooter.setTargetPosition(target);
+        if (gamepad1.left_bumper) {
+            transferencemotor.setPower(1.0);
+        }
+        else {
+            transferencemotor.setPower(0);
+        }
     }
 }
