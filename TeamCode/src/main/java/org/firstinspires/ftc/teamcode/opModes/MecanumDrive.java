@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 public class MecanumDrive extends OpMode {
     private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, transferencemotor;
-    Servo controlShooter;
+    Servo controlShooter, pushServo;
     private IMU imu;
     double maxSpeed = 1.0;
     double target = 0;
@@ -28,9 +28,10 @@ public class MecanumDrive extends OpMode {
 //        controlShooter = hardwareMap.get(DcMotor.class, "csm");
 //        controlShooter = hardwareMap.get(Servo.class, "cs");
         transferencemotor = hardwareMap.get(DcMotor.class, "tm");
+        pushServo = hardwareMap.get(Servo.class, "ps");
+
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -80,9 +81,9 @@ public class MecanumDrive extends OpMode {
         telemetry.addData("target", target);
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.left_trigger>0.5) {
-            vacuumingMotor.setPower(1.0);
-        } else if (gamepad1.y) {
             vacuumingMotor.setPower(-1.0);
+        } else if (gamepad1.y) {
+            vacuumingMotor.setPower(1.0);
         }
         else {
             vacuumingMotor.setPower(0);
@@ -94,6 +95,12 @@ public class MecanumDrive extends OpMode {
             else {
                 maxSpeed = 1.0;
             }
+        }
+        if (gamepad1.right_bumper){
+            pushServo.setPosition(1);
+        }
+        else {
+            pushServo.setPosition(0.5);
         }
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad1.right_trigger>0.5) {
