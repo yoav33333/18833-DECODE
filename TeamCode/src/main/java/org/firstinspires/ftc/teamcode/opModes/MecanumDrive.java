@@ -6,13 +6,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
 public class MecanumDrive extends OpMode {
-    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, controlShooter, transferencemotor;
+    private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, transferencemotor;
+    Servo controlShooter;
     private IMU imu;
     double maxSpeed = 1.0;
-    int target = 0;
+    double target = 0;
     // every motor name
     @Override
     public void init() {
@@ -23,9 +25,9 @@ public class MecanumDrive extends OpMode {
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
         shooterMotor1 = hardwareMap.get(DcMotor.class, "sm1");
         shooterMotor2 = hardwareMap.get(DcMotor.class, "sm2");
-        controlShooter = hardwareMap.get(DcMotor.class, "csm");
+//        controlShooter = hardwareMap.get(DcMotor.class, "csm");
+//        controlShooter = hardwareMap.get(Servo.class, "cs");
         transferencemotor = hardwareMap.get(DcMotor.class, "tm");
-
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -33,15 +35,15 @@ public class MecanumDrive extends OpMode {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        controlShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        controlShooter.setTargetPosition(0);
-        controlShooter.setPower(1);
-        controlShooter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        controlShooter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        controlShooter.setTargetPosition(0);
+//        controlShooter.setPower(1);
+//        controlShooter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        controlShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        controlShooter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         imu = hardwareMap.get(IMU.class, "imu");
 
@@ -93,7 +95,7 @@ public class MecanumDrive extends OpMode {
                 maxSpeed = 1.0;
             }
         }
-        target += (int) (10*(gamepad1.dpad_up ? 0.5 : gamepad1.dpad_down ? -0.5 : 0.0));
+//        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad1.right_trigger>0.5) {
             shooterMotor1.setPower(1.0);
             shooterMotor2.setPower(-1.0);
@@ -102,7 +104,7 @@ public class MecanumDrive extends OpMode {
             shooterMotor1.setPower(0);
             shooterMotor2.setPower(0);
         }
-        controlShooter.setTargetPosition(target);
+//        controlShooter.setPosition(target);
         if (gamepad1.left_bumper) {
             transferencemotor.setPower(1.0);
         }
