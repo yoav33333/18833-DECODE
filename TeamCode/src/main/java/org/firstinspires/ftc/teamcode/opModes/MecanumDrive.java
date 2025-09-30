@@ -97,15 +97,15 @@ public class MecanumDrive extends OpMode {
             }
         }
         if (gamepad1.right_bumper){
-            pushServo.setPosition(1);
+            pushServo.setPosition(0);
         }
         else {
             pushServo.setPosition(0.5);
         }
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad1.right_trigger>0.5) {
-            shooterMotor1.setPower(1.0);
-            shooterMotor2.setPower(-1.0);
+            shooterMotor1.setPower(0.9);
+            shooterMotor2.setPower(-0.9);
         }
         else {
             shooterMotor1.setPower(0);
@@ -117,6 +117,12 @@ public class MecanumDrive extends OpMode {
         }
         else {
             transferencemotor.setPower(0);
+        }
+        if (gamepad1.x) {
+            pushServo.setPosition(1);
+        }
+        else {
+            pushServo.setPosition(0);
         }
     }
 }
