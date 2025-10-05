@@ -82,11 +82,13 @@ public class MecanumDrive extends OpMode {
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.left_trigger>0.5) {
             vacuumingMotor.setPower(-1.0);
+            pushServo.setPosition(0);
         } else if (gamepad1.y) {
             vacuumingMotor.setPower(1.0);
         }
         else {
             vacuumingMotor.setPower(0);
+            pushServo.setPosition(1);
         }
         if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
             if (maxSpeed == 1.0) {
@@ -96,12 +98,7 @@ public class MecanumDrive extends OpMode {
                 maxSpeed = 1.0;
             }
         }
-        if (gamepad1.right_bumper){
-            pushServo.setPosition(0);
-        }
-        else {
-            pushServo.setPosition(0.5);
-        }
+
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad1.right_trigger>0.5) {
             shooterMotor1.setPower(0.9);
@@ -117,12 +114,6 @@ public class MecanumDrive extends OpMode {
         }
         else {
             transferencemotor.setPower(0);
-        }
-        if (gamepad1.x) {
-            pushServo.setPosition(1);
-        }
-        else {
-            pushServo.setPosition(0);
         }
     }
 }
