@@ -82,7 +82,7 @@ public class MecanumDrive extends OpMode {
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         if (gamepad1.left_trigger>0.5) {
             vacuumingMotor.setPower(-1.0);
-            pushServo.setPosition(0);
+            transferencemotor.setPower(1.0);
         } else if (gamepad1.y) {
             vacuumingMotor.setPower(1.0);
         }
@@ -109,6 +109,12 @@ public class MecanumDrive extends OpMode {
             shooterMotor2.setPower(0);
         }
 //        controlShooter.setPosition(target);
+        if (gamepad1.left_bumper) {
+            transferencemotor.setPower(1.0);
+        }
+        else {
+            transferencemotor.setPower(0);
+        }
         if (gamepad1.right_bumper) {
             pushServo.setPosition(0);
         }
