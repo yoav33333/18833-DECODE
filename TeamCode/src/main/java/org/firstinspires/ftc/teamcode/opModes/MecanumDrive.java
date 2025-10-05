@@ -88,7 +88,7 @@ public class MecanumDrive extends OpMode {
         }
         else {
             vacuumingMotor.setPower(0);
-            pushServo.setPosition(1);
+            transferencemotor.setPower(0);
         }
         if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
             if (maxSpeed == 1.0) {
@@ -109,11 +109,11 @@ public class MecanumDrive extends OpMode {
             shooterMotor2.setPower(0);
         }
 //        controlShooter.setPosition(target);
-        if (gamepad1.left_bumper) {
-            transferencemotor.setPower(1.0);
+        if (gamepad1.right_bumper) {
+            pushServo.setPosition(0);
         }
         else {
-            transferencemotor.setPower(0);
+            pushServo.setPosition(1);
         }
     }
 }
