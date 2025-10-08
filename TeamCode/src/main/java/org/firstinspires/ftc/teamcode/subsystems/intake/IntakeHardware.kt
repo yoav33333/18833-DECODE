@@ -7,14 +7,17 @@ import org.firstinspires.ftc.teamcode.p2p.drive.Drive
 import kotlin.getValue
 
 object IntakeHardware: Component {
-    val intakeMotor by lazy { MotorEx("vm") }
+    val intakeMotor by lazy { MotorEx("vm").reversed() }
+    val transferMotor by lazy { MotorEx("tm") }
 
     override fun preInit() {
         intakeMotor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
+        transferMotor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
     }
 
     fun setPower(power: Double) {
         intakeMotor.power = power
+        transferMotor.power = power
     }
     fun stop() {
         setPower(0.0)

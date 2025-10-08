@@ -83,9 +83,8 @@ public class MecanumDrive extends OpMode {
         if (gamepad1.left_trigger>0.5) {
             vacuumingMotor.setPower(-1.0);
             transferencemotor.setPower(1.0);
-        } else if (gamepad1.y) {
-            vacuumingMotor.setPower(1.0);
         }
+
         else {
             vacuumingMotor.setPower(0);
             transferencemotor.setPower(0);
@@ -119,7 +118,9 @@ public class MecanumDrive extends OpMode {
             pushServo.setPosition(0);
         }
         else {
-            pushServo.setPosition(1);
+            pushServo.setPosition(0.5);
         }
     }
+
 }
+

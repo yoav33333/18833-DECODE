@@ -19,7 +19,7 @@ object Drive : Component {
         MotorEx("rr"),
     )
     private val powers = arrayOf(0.0, 0.0, 0.0, 0.0)
-    private val imu = IMUEx("imu", Direction.RIGHT, Direction.UP).zeroed()
+    val imu = IMUEx("imu", Direction.RIGHT, Direction.UP)
 
 
     override fun preInit() {
@@ -52,8 +52,8 @@ object Drive : Component {
         imu.zero()
         DriveVariables.imuOffset = angle
     }
-    fun getHeading(): Double {
-        return Math.toRadians(imu.get().inDeg + DriveVariables.imuOffset)
+    public fun getHeading(): Double {
+        return (imu.get().inRad + DriveVariables.imuOffset)
     }
 
     override fun postUpdate() {
@@ -69,19 +69,20 @@ object Drive : Component {
     }
 
     fun driveByVectors(x: Double,y: Double, rx: Double) {
-        var rotX: Double = x
-        var rotY: Double = y
-        if(DriveVariables.fieldOriented || DriveVariables.auto) {
+
+//        var rotX: Double = x
+//        var rotY: Double = y
+//        if(DriveVariables.fieldOriented || DriveVariables.auto) {
             var botHeading: Double = getHeading()
-            rotX = x * cos(-botHeading) - y * sin(-botHeading)
-            rotY = x * sin(-botHeading) + y * cos(-botHeading)
-        }
+            var rotX = x * cos(-botHeading) - y * sin(-botHeading)
+            var rotY = x * sin(-botHeading) + y * cos(-botHeading)
+//        }
         rotX = rotX * xMul
-        val denominator: Double = (abs(rotY) + abs(rotX) + abs(rx)).coerceAtLeast(1.0)
-        val fl: Double = (rotY + rotX + rx) / denominator
-        val bl: Double = (rotY - rotX + rx) / denominator
-        val fr: Double = (rotY - rotX - rx) / denominator
-        val br: Double = (rotY + rotX - rx) / denominator
+//        val denominator: Double = (abs(rotY) + abs(rotX) + abs(rx)).coerceAtLeast(1.0)
+        val fl: Double = (rotY + rotX + rx) // denominator
+        val bl: Double = (rotY - rotX + rx) // denominator
+        val fr: Double = (rotY - rotX - rx) // denominator
+        val br: Double = (rotY + rotX - rx) // denominator
 
         setDrivePower(fl, fr, bl, br)
     }
