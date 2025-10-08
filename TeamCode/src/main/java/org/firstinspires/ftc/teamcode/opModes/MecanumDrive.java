@@ -101,8 +101,8 @@ public class MecanumDrive extends OpMode {
 
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad1.right_trigger>0.5) {
-            shooterMotor1.setPower(0.9);
-            shooterMotor2.setPower(-0.9);
+            shooterMotor1.setPower(0.7);
+            shooterMotor2.setPower(-0.7);
         }
         else {
             shooterMotor1.setPower(0);
