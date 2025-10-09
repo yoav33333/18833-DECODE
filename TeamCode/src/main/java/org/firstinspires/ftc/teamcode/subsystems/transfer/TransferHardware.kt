@@ -4,8 +4,8 @@ import dev.nextftc.hardware.impl.MotorEx
 import dev.nextftc.hardware.impl.ServoEx
 
 object TransferHardware {
-    val transferServo by lazy { ServoEx("ps") }
+    val pusServo by lazy { ServoEx("ps") }
     fun setPower(power: Double){
-        transferServo.position = power
+        pusServo.position = power
     }
 }
