@@ -2,13 +2,14 @@ package org.firstinspires.ftc.teamcode.opModes
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import com.qualcomm.robotcore.hardware.Servo
 import org.firstinspires.ftc.vision.VisionPortal
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName
 
-@Autonomous(name = "AprilTag Webcam Servo + Stream", group = "Vision")
+@TeleOp(name = "AprilTag Webcam Servo + Stream", group = "Vision")
 class apriltagwebcam : LinearOpMode() {
 
     private lateinit var visionPortal: VisionPortal

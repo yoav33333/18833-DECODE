@@ -118,7 +118,7 @@ public class MecanumDrive extends OpMode {
             pushServo.setPosition(0);
         }
         else {
-            pushServo.setPosition(0.5);
+            pushServo.setPosition(1);
         }
     }
 
