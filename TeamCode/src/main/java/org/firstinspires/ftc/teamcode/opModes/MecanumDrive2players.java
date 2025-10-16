@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class MecanumDrive extends OpMode {
+public class MecanumDrive2players extends OpMode {
     private DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, transferencemotor;
     Servo controlShooter, pushServo, gateServo;
     private IMU imu;
@@ -30,6 +30,7 @@ public class MecanumDrive extends OpMode {
         transferencemotor = hardwareMap.get(DcMotor.class, "tm");
         pushServo = hardwareMap.get(Servo.class, "ps");
         gateServo = hardwareMap.get(Servo.class, "gs");
+
 
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -81,7 +82,7 @@ public class MecanumDrive extends OpMode {
         telemetry.addData("heading", imu.getRobotYawPitchRollAngles());
         telemetry.addData("target", target);
         drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
-        if (gamepad1.left_trigger>0.5) {
+        if (gamepad2.left_trigger>0.5) {
             vacuumingMotor.setPower(-1.0);
             transferencemotor.setPower(1.0);
         }
@@ -90,17 +91,9 @@ public class MecanumDrive extends OpMode {
             vacuumingMotor.setPower(0);
             transferencemotor.setPower(0);
         }
-        if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
-            if (maxSpeed == 1.0) {
-                maxSpeed = 0.5;
-            }
-            else {
-                maxSpeed = 1.0;
-            }
-        }
 
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
-        if (gamepad1.right_trigger>0.5) {
+        if (gamepad2.right_trigger>0.5) {
             shooterMotor1.setPower(0.7);
             shooterMotor2.setPower(-0.7);
         }
@@ -109,13 +102,13 @@ public class MecanumDrive extends OpMode {
             shooterMotor2.setPower(0);
         }
 //        controlShooter.setPosition(target);
-        if (gamepad1.left_bumper) {
+        if (gamepad2.left_bumper) {
             transferencemotor.setPower(1.0);
         }
         else {
             transferencemotor.setPower(0);
         }
-        if (gamepad1.right_bumper) {
+        if (gamepad2.right_bumper) {
             pushServo.setPosition(0.5);
             gateServo.setPosition(1);
         }
