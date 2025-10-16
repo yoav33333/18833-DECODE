@@ -19,9 +19,9 @@ public class MecanumDrive extends OpMode {
     @Override
     public void init() {
         frontLeftMotor = hardwareMap.get(DcMotor.class, "lf");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "lr");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "rf");
-        backRightMotor = hardwareMap.get(DcMotor.class, "rr");
+        backLeftMotor = hardwareMap.get(DcMotor.class, "bl");
+        frontRightMotor = hardwareMap.get(DcMotor.class, "fr");
+        backRightMotor = hardwareMap.get(DcMotor.class, "br");
         vacuumingMotor = hardwareMap.get(DcMotor.class, "vm");
         shooterMotor1 = hardwareMap.get(DcMotor.class, "sm1");
         shooterMotor2 = hardwareMap.get(DcMotor.class, "sm2");
