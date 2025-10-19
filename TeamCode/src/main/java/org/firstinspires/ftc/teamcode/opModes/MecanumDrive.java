@@ -116,14 +116,13 @@ public class MecanumDrive extends OpMode {
             transferencemotor.setPower(0);
         }
         if (gamepad1.right_bumper) {
-            pushServo.setPosition(0.5);
+            pushServo.setPosition(-1);
             gateServo.setPosition(1);
         }
         else {
-            pushServo.setPosition(1);
+            pushServo.setPosition(0.5);
             gateServo.setPosition(0);
         }
     }
 
 }
-
