@@ -110,7 +110,7 @@ public class MecanumDrive extends OpMode {
         }
 //        controlShooter.setPosition(target);
         if (gamepad1.left_bumper) {
-            transferencemotor.setPower(1.0);
+            transferencemotor.setPower(-1.0);
         }
         else {
             transferencemotor.setPower(0);
