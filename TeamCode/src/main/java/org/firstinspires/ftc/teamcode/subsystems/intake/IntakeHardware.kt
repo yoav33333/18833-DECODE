@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.p2p.drive.Drive
 import kotlin.getValue
 
 object IntakeHardware: Component {
-    val intakeMotor by lazy { MotorEx("vm").reversed() }
+    val intakeMotor by lazy { MotorEx("vm") }
     val transferMotor by lazy { MotorEx("tm") }
 
     override fun preInit() {

@@ -14,9 +14,9 @@ import kotlin.math.sin
 object Drive : Component {
     private val motors = arrayOf(
         MotorEx("lf"),
-        MotorEx("rf"),
-        MotorEx("lr"),
-        MotorEx("rr"),
+        MotorEx("fr"),
+        MotorEx("bl"),
+        MotorEx("br"),
     )
     private val powers = arrayOf(0.0, 0.0, 0.0, 0.0)
     val imu = IMUEx("imu", Direction.RIGHT, Direction.UP)
@@ -26,7 +26,7 @@ object Drive : Component {
         for (motor in motors) {
             motor.zeroPowerBehavior = DcMotor.ZeroPowerBehavior.BRAKE
         }
-        motors[Motor.FRONT_LEFT.index].reverse()
+        motors[Motor.FRONT_RIGHT.index].reverse()
         motors[Motor.BACK_LEFT.index].reverse()
     }
 

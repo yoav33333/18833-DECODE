@@ -8,7 +8,7 @@ object IntakeCommands {
         .setStop {i->
             if (!i) IntakeHardware.stop()
         }
-        .setIsDone { false }
+//        .setIsDone { false }
         .setRequirements(IntakeHardware)
 
 
@@ -17,7 +17,7 @@ object IntakeCommands {
         .setStop {i->
             if (!i) IntakeHardware.stop()
         }
-        .setIsDone { false }
+//        .setIsDone { false }
         .setRequirements(IntakeHardware)
     val stop = LambdaCommand()
         .setStart {

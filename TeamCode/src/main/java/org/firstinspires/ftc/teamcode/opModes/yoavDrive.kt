@@ -18,13 +18,11 @@ class YoavDrive: NextFTCOpMode() {
         addComponents(Drive)
         button { gamepad1.left_trigger>0.2 ||gamepad1.left_bumper}
             .whenTrue (intake )
-            .whenBecomesFalse { intake.cancel() }
+
         button { gamepad1.y }
             .whenTrue ( outtake )
-            .whenBecomesFalse { intake.cancel() }
         button { gamepad1.left_bumper }
             .whenTrue  ( push)
-            .whenBecomesFalse { push.cancel() }
 
         button { gamepad1.right_trigger>0.2 }
             .whenTrue (shoot)

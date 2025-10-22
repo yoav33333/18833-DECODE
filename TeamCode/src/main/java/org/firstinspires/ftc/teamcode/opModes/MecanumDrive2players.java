@@ -32,7 +32,7 @@ public class MecanumDrive2players extends OpMode {
         gateServo = hardwareMap.get(Servo.class, "gs");
 
 
-        frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotor.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -94,8 +94,8 @@ public class MecanumDrive2players extends OpMode {
 
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
         if (gamepad2.right_trigger>0.5) {
-            shooterMotor1.setPower(0.7);
-            shooterMotor2.setPower(-0.7);
+            shooterMotor1.setPower(0.65);
+            shooterMotor2.setPower(-0.65);
         }
         else {
             shooterMotor1.setPower(0);
@@ -109,11 +109,11 @@ public class MecanumDrive2players extends OpMode {
             transferencemotor.setPower(0);
         }
         if (gamepad2.right_bumper) {
-            pushServo.setPosition(0.5);
+            pushServo.setPosition(0);
             gateServo.setPosition(1);
         }
         else {
-            pushServo.setPosition(1);
+            pushServo.setPosition(0.5);
             gateServo.setPosition(0);
         }
     }
