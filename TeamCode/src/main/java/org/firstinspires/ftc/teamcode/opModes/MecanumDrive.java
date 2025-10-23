@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Drive system", group = "opmode")
+@TeleOp(name = "Drive system", group = "Linear Opmode")
 public class MecanumDrive extends OpMode {
     private DcMotorEx frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, transferencemotor;
     Servo controlShooter, pushServo, gateServo;
