@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp
+@TeleOp(name = "Drive system", group = "opmode")
 public class MecanumDrive extends OpMode {
     private DcMotorEx frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor, vacuumingMotor, shooterMotor1, shooterMotor2, transferencemotor;
     Servo controlShooter, pushServo, gateServo;
@@ -95,14 +95,6 @@ public class MecanumDrive extends OpMode {
         else {
             vacuumingMotor.setPower(0);
             transferencemotor.setPower(0);
-        }
-        if (gamepad1.right_bumper && !gamepad1.rightBumperWasPressed()) {
-            if (maxSpeed == 1.0) {
-//                maxSpeed = 0.5;
-            }
-            else {
-                maxSpeed = 1.0;
-            }
         }
 
 //        target += (int) ((gamepad1.dpad_up ? 0.01 : gamepad1.dpad_down ? -0.01 : 0.0));
